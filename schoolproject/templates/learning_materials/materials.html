@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ group.title }}</h1>
+<ol>
+    {% for material in materials %}
+    <li><a href="{% url 'learning_materials:material_detail' material.pk %}">{{ material.title }}</a></li>
+    {% endfor %}
+</ol>
+<p class="fs-5 col-md-8"></p>
+    {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  {% for question in questions %}
+
+  {% for field in form %}
+    
+      {{ question.question_text|safe }}
+    {% endfor %}
+    <div class="col-xs-3">
+
+      <form method="post">
+        {% csrf_token %}
+      <label for="ex3">{{ form.as_p }}</label>
+      <input class="btn btn-primary btn-lg px-3" type="submit" value="Ответить">
+      
+      <div class="mb-5">
+        <a href="{% url 'learning_materials:answers' material.pk question.id 1 %}" class="btn btn-primary btn-lg px-2">Посмотреть решение</a>
+      </div>
+      </form>
+    </div>
+  {% endfor %}
+{% endblock %}

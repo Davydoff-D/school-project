@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {{ question.question_text|safe }}
+    <p>Специальные символы: π - число пи, </p>
+    <p>/ - знак деления или дробная черта, ° - знак градусов </p>
+    <div class="col-xs-3">
+        {% for message in messages %}
+        <p class="text-danger">{{ message }}</p>
+        {% endfor %}
+
+      <form method="post">
+        {% csrf_token %}
+      <label for="ex3">{{ form.as_p }}
+
+      <div><br>
+      {% if ok_answer %}
+        <button type="button" class="btn btn-success ">Правильно</button>
+      {% else %}
+        <input class="btn btn-primary" type="submit" value="Ответить">
+        {% comment %} <input class="btn btn-primary btn-lg px-3" type="submit" value="Ответить"> {% endcomment %}
+      {% endif %}
+      </br></div>
+
+      <div><br>
+        {% if ok_answer_tasks %}
+        <a href="{% url 'learning_materials:tasks_detail' material.pk next_question_id %}" class="btn btn-primary ">Следующее задание</a>
+        {% elif home %}
+        <a href="{% url 'learning_materials:index' %}" class="btn btn-primary ">На главную страницу</a>
+        {% endif %}
+      </form>
+    <p>
+      <div class="mb-5">
+        {% if first %}
+          <a href="{% url 'learning_materials:answers' material.pk question.id 1 %}" class="btn btn-primary ">Посмотреть решение</a>
+        {% elif second %}
+          <a href="{% url 'learning_materials:answers' material.pk question.id 2 %}" class="btn btn-primary ">Посмотреть решение</a>
+        {% elif third %}
+          <a href="{% url 'learning_materials:answers' material.pk question.id 3 %}" class="btn btn-primary ">Посмотреть решение</a>
+        {% elif fourth %}
+          <a href="{% url 'learning_materials:answers' material.pk question.id 4 %}" class="btn btn-primary ">Посмотреть решение</a>
+        {% elif fifth %}
+          <a href="{% url 'learning_materials:answers' material.pk question.id 5 %}" class="btn btn-primary ">Посмотреть решение</a>
+        {% endif %}
+      </div>
+    </p>
+      
+    </div>
+
+{% endblock %}

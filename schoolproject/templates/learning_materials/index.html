@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Изучение алгебры 10 класса</h1>
+<p class="fs-5 col-md-8">Если вы пропустили или не поняли какие-то моменты алгебры, то, нажав на кнопку ниже вы можете выбрать тему, с которой у вас проблема и подготовиться по ней.</p>
+
+<div class="mb-5">
+  <a href="{% url 'learning_materials:materials' %}" class="btn btn-primary btn-lg px-4">Перейти к изучению</a>
+</div>
+
+{% endblock %} 
